@@ -10,7 +10,10 @@
 //        ° stampa in console: la parola inserita NON è palindroma
   
 function isPalindrome(){
-    let userWord = prompt("inserisci una parola da 1 a 5 lettere");
+    let userWord = prompt("Inserisci una parola");
+    if(userWord == ""){
+        userWord = prompt("Compila il campo di testo!!!");
+    }
     console.log(userWord);
     console.log(reverseString(userWord));
 
@@ -38,4 +41,6 @@ function reverseString(string){
 }
 
 // _____________FINE FUNZIONI______________
+
+
 
