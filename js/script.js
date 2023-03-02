@@ -11,16 +11,19 @@
   
 function isPalindrome(){
     let userWord = prompt("Inserisci una parola");
-    if(userWord == ""){
-        userWord = prompt("Compila il campo di testo!!!");
-    }
-    console.log(userWord);
-    console.log(reverseString(userWord));
 
+    if(userWord != ""){
+        console.log(userWord);
+        console.log(reverseString(userWord));
+    
     if (userWord == reverseString(userWord)){
-        console.log("la parola è palindroma");
+            console.log("la parola è palindroma");
     } else {
-        console.log("la parola NON è palindroma");
+            console.log("la parola NON è palindroma");
+    }
+
+    } else {
+        userWord = prompt("Compila il campo di testo!!!");
     }
 }
 
