@@ -91,16 +91,10 @@ userNumberChoiceButtonEl.addEventListener("click", function(){
 
     if(userEvenOrOdd == "pari"){
         choices = false;
-        console.log(choices);
-        console.log("l'utente ha scelto Pari");
-        console.log(isEvenOrOdd(sum));
     }
     
     if(userEvenOrOdd == "dispari"){
         choices = true;
-        console.log(choices);
-        console.log("l'utente ha scelto dispari");
-        console.log(isEvenOrOdd(sum));
     }
 
     if(choices == false && sum % 2 == 0){
