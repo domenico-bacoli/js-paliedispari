@@ -8,27 +8,29 @@
 //        ° stampa in console: la parola inserita è Palindroma
 // : ALTRIMENTI
 //        ° stampa in console: la parola inserita NON è palindroma
-  
-function isPalindrome(){
-    let userWord = prompt("Inserisci una parola");
 
-    if(userWord != ""){
-        console.log(userWord);
-        console.log(reverseString(userWord));
-    
-    if (userWord == reverseString(userWord)){
-            console.log("la parola è palindroma");
-    } else {
-            console.log("la parola NON è palindroma");
-    }
+const userWordEl = document.getElementById("user-word");
+const sendButtonEl = document.getElementById("send-button");
+const palindromeResultEl = document.getElementById("palindrome-result");
 
-    } else {
-        userWord = prompt("Compila il campo di testo!!!");
-    }
-}
 
-// isPalindrome()
+sendButtonEl.addEventListener("click", function(){
 
+    function isPalindrome(){
+        let userWord = userWordEl.value;
+
+        if(userWord == ""){
+            palindromeResultEl.innerText = "Compila correttamente il campo di testo";
+
+        } else if(userWord == reverseString(userWord)){
+            palindromeResultEl.innerText = "La parola inserita è Palindroma";
+
+        } else {
+            palindromeResultEl.innerText = "La parola inserita NON è Palindroma";
+        }
+    }    
+    isPalindrome();    
+})
 
 // _______________FUNZIONI___________________
 
@@ -62,44 +64,68 @@ Dichiariamo chi ha vinto.
 // tramite una funzione stabiliamo se il numero è pari o dispari.
 // stampa a schermo il vincitore
 
+const userEvenOrOddEl = document.getElementById("user-even-or-odd");
+const userNumberChoiceEl = document.getElementById("user-number-choice");
+const userNumberEl = document.getElementById("user-number");
+const computerNumberEl = document.getElementById("computer-number");
+const userEvenOrOddButtonEl = document.getElementById("user-even-or-odd-button");
+const userNumberChoiceButtonEl = document.getElementById("user-number-choice-button");
+const userChoiceEl = document.getElementById("user-choice"); 
+const numberSumEl = document.getElementById("number-sum");
+const pariDispariResultEl = document.getElementById("pari-dispari-result");
+
 let choices = false;
-let userEvenOrOdd = prompt("Pari o Dispari?");
-let userNumberChoice = parseInt(prompt("Inserisci un numero"));
-let computerNumber = randomNumberBetween(1,5);
-console.log(userNumberChoice);
-console.log(computerNumber);
+let userEvenOrOdd;
 
-if(userEvenOrOdd == "pari"){
-    choices = false;
-    console.log(choices);
-    console.log("l'utente ha scelto pari");
-} else if(userEvenOrOdd == "dispari"){
-    choices = true;
-    console.log(choices);
-    console.log("l'utente ha scelto dispari");
-}
+userEvenOrOddButtonEl.addEventListener("click", function(){
+    userEvenOrOdd = userEvenOrOddEl.value;
+    userChoiceEl.innerText = `HAI SCELTO: ${userEvenOrOdd}`;
+    let computerNumber = randomNumberBetween(1,5);
 
-sum = userNumberChoice + computerNumber;
-console.log(sum);
+userNumberChoiceButtonEl.addEventListener("click", function(){
+    let userNumberChoice = userNumberChoiceEl.value;
+    userNumberEl.innerText = `Hai scelto il numero: ${userNumberChoice}`;
+    computerNumberEl.innerText = `Il numero del Computer è: ${computerNumber}`;
+    let sum = +userNumberChoice + computerNumber;
+    numberSumEl.innerText = `La somma dei numeri è: ${sum}`;
 
-console.log(isEvenOrOdd(sum));
+    if(userEvenOrOdd == "pari"){
+        choices = false;
+        console.log(choices);
+        console.log("l'utente ha scelto Pari");
+        console.log(isEvenOrOdd(sum));
+    }
+    
+    if(userEvenOrOdd == "dispari"){
+        choices = true;
+        console.log(choices);
+        console.log("l'utente ha scelto dispari");
+        console.log(isEvenOrOdd(sum));
+    }
 
-if(choices == false && sum % 2 == 0){
-    console.log("ha vinto L'utente");
-} else {
-    console.log("ha vinto il Computer");
-}
+    if(choices == false && sum % 2 == 0){
+        pariDispariResultEl.innerText = "COMPLIMENTI! HAI VINTO";
 
+    } else if(choices == true && sum % 2 == 0){
+        pariDispariResultEl.innerText = "HAI PERSO :(";
 
+    } else if(choices == false && sum % 2 != 0){
+        pariDispariResultEl.innerText = "HAI PERSO :(";
 
+    } else if(choices == true && sum % 2 != 0){
+        pariDispariResultEl.innerText = "COMPLIMENTI! HAI VINTO";
+    }
 
+})   
+
+})
 
 // _______________FUNZIONI___________________
 
 // Numero random
 function randomNumberBetween(min, max) {
     // generiamo un numero random
-    let random = Math.floor(Math.random() * (max - min + 1) + min)
+    let random = Math.floor(Math.random() * (max - min + 1) + min);
     // una volta che eseguimamo la funzione, restituisci al suo posto questo valore
     return random;
   }
@@ -114,4 +140,4 @@ function randomNumberBetween(min, max) {
     
   }
   
-// ______________FINE FUNZIONI_______________
+// ______________FINE FUNZIONI______________
